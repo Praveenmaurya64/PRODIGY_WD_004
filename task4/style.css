@@ -1,10 +1,19 @@
 :root {
-    --bg-color: #a9a9a9;
-    --text-color: #000000;
-    --accent-color: #FF4500;
-    --secondary-text: #3c3c3c;
-    --border-color: #1A1A1A;
-    --card-bg: #ffffff;
+    /* Modern Dark Theme Colors */
+    --bg-color: #0f0f23;
+    --bg-secondary: #16213e;
+    --bg-card: #1a1a2e;
+    --text-color: #ffffff;
+    --text-secondary: #a0aec0;
+    --accent-color: #00d9ff;
+    --accent-secondary: #7c3aed;
+    --accent-gradient: linear-gradient(135deg, #00d9ff 0%, #7c3aed 100%);
+    --border-color: #2d3748;
+    --card-bg: #1a1a2e;
+    
+    /* Glow effects */
+    --glow-cyan: 0 0 20px rgba(0, 217, 255, 0.4);
+    --glow-purple: 0 0 20px rgba(124, 58, 237, 0.4);
     
     --font-heading: 'Impact', 'Haettenschweiler', 'Arial Narrow Bold', sans-serif;
     --font-body: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
@@ -102,31 +111,44 @@ p {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    border: 2px solid var(--text-color);
+    border: 2px solid var(--accent-color);
     cursor: pointer;
     transition: all 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    position: relative;
+    overflow: hidden;
 }
 
 .btn-primary {
-    background-color: var(--text-color);
-    color: var(--bg-color);
+    background: var(--accent-gradient);
+    color: #0f0f23;
+    border: none;
 }
 
 .btn-primary:hover {
-    background-color: var(--accent-color);
-    border-color: var(--accent-color);
-    color: white;
     transform: translateY(-4px);
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.2);
+    box-shadow: var(--glow-cyan);
 }
 
 .btn-secondary {
     background-color: transparent;
+    color: var(--accent-color);
+    border: 2px solid var(--accent-color);
 }
 
 .btn-secondary:hover {
-    background-color: var(--text-color);
-    color: var(--bg-color);
+    background: var(--accent-color);
+    color: #0f0f23;
+    box-shadow: var(--glow-cyan);
+}
+
+.btn-nav {
+    background: var(--accent-gradient);
+    color: #0f0f23;
+    border: none;
+}
+
+.btn-nav:hover {
+    box-shadow: var(--glow-cyan);
 }
 
 /* Navigation */
@@ -135,10 +157,10 @@ header {
     position: fixed;
     top: 0;
     width: 100%;
-    background-color: rgba(249, 249, 245, 0.9);
-    backdrop-filter: blur(10px);
+    background-color: rgba(15, 15, 35, 0.95);
+    backdrop-filter: blur(15px);
     z-index: 1000;
-    border-bottom: 1px solid rgba(0,0,0,0.05);
+    border-bottom: 1px solid var(--border-color);
 }
 
 nav {
@@ -222,7 +244,7 @@ nav {
     color: var(--secondary-text);
 }
 .hero-sub strong {
-  color: #FF4500;   /* your accent color */
+  color: var(--accent-color);   /* Cyan accent color */
 }
 
 
@@ -257,7 +279,7 @@ nav {
 /* Sections Base */
 section {
     padding: var(--spacing-xl) 0;
-    border-top: 1px solid rgba(0,0,0,0.1);
+    border-top: 1px solid var(--border-color);
 }
 
 .section-header h2 {
@@ -308,11 +330,18 @@ section {
 }
 
 .stat-box {
-    background: white;
+    background: var(--card-bg);
     padding: var(--spacing-md);
     border: 2px solid var(--border-color);
     box-shadow: 4px 4px 0 var(--border-color);
     text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-box:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--glow-cyan);
+    border-color: var(--accent-color);
 }
 
 .stat-number {
@@ -375,17 +404,19 @@ section {
 
 .tool-tag {
     padding: 8px 16px;
-    border: 1px solid var(--border-color);
+    border: 1px solid var(--accent-color);
     font-weight: 500;
     font-size: 0.9rem;
-    background: white;
+    background: transparent;
+    color: var(--accent-color);
     transition: all 0.2s ease;
 }
 
 .tool-tag:hover {
-    background: var(--text-color);
-    color: white;
+    background: var(--accent-gradient);
+    color: #0f0f23;
     transform: rotate(-2deg);
+    box-shadow: var(--glow-cyan);
 }
 
 /* Projects Section */
@@ -396,14 +427,15 @@ section {
 }
 
 .project-card {
-    background: white;
+    background: var(--card-bg);
     border: 2px solid var(--border-color);
     transition: transform 0.3s ease;
 }
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 8px 8px 0 var(--border-color);
+    box-shadow: var(--glow-cyan);
+    border-color: var(--accent-color);
 }
 
 .project-image {
@@ -489,8 +521,9 @@ section {
 .form-group textarea {
     width: 100%;
     padding: 1rem;
-    border: 2px solid #ddd;
-    background: white;
+    border: 2px solid var(--border-color);
+    background: var(--bg-card);
+    color: var(--text-color);
     font-family: inherit;
     font-size: 1rem;
     transition: border-color 0.3s ease;
@@ -500,6 +533,7 @@ section {
 .form-group textarea:focus {
     outline: none;
     border-color: var(--accent-color);
+    box-shadow: var(--glow-cyan);
 }
 
 .error-msg {
@@ -517,8 +551,9 @@ section {
 /* Footer */
 footer {
     padding: var(--spacing-md) 0;
-    background: var(--text-color);
-    color: white;
+    background: var(--bg-secondary);
+    color: var(--text-color);
+    border-top: 1px solid var(--border-color);
 }
 
 .footer-content {
